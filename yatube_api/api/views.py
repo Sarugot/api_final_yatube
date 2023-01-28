@@ -29,7 +29,7 @@ class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     или GET для группы по id.
     """
     permission_classes = [
-        IsOwnerOrReadOnly, permissions.IsAuthenticatedOrReadOnly
+        permissions.AllowAny
     ]
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -60,7 +60,7 @@ class FollowViewSet(viewsets.ModelViewSet):
     """
     serializer_class = FollowSerializer
     permission_classes = [
-        permissions.IsAuthenticated, IsOwnerOrReadOnly
+        permissions.IsAuthenticated
     ]
     filter_backends = (filters.SearchFilter,)
     search_fields = ('following__username',)
